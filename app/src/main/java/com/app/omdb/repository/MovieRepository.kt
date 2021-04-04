@@ -8,7 +8,7 @@ class MovieRepository(private val api : OMDBApi) : BaseRepository(){
         apiKey: String,
         movieName: String
     ) = safeApiCall {
-        api.fetchMoviesListByName(apiKey,movieName)
+        api.fetchMoviesListByName(apiKey, movieName)
     }
 
 
@@ -16,7 +16,7 @@ class MovieRepository(private val api : OMDBApi) : BaseRepository(){
         apiKey: String,
         movieID: String
     ) = safeApiCall {
-        api.fetchMovieDetailsByID(apiKey,movieID)
+        api.fetchMovieDetailsByID(apiKey, movieID)
     }
 
 }

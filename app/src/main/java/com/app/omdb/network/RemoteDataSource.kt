@@ -3,6 +3,7 @@ package com.app.omdb.network
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+//import com.app.omdb.BuildConfig.BASE_URL
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RemoteDataSource {
