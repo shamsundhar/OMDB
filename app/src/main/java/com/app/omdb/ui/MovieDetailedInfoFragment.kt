@@ -8,33 +8,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.app.excelli.utils.ImageUtils
 import com.app.omdb.databinding.FragmentMovieDetailedInfoBinding
 import com.app.omdb.network.OMDBApi
 import com.app.omdb.network.Resource
 import com.app.omdb.repository.MovieRepository
 import com.app.omdb.responses.MovieDetailsResponse
 import com.app.omdb.ui.base.BaseFragment
+import com.app.omdb.ui.common.Constants
+import com.app.utils.ImageUtils
 import com.squareup.picasso.Picasso
 
-class MovieDetailedInfoFragment : BaseFragment<MoviesViewModel,FragmentMovieDetailedInfoBinding,MovieRepository>() {
+class MovieDetailedInfoFragment :
+    BaseFragment<MoviesViewModel, FragmentMovieDetailedInfoBinding, MovieRepository>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.moviesDetailsResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                   updateUI(it.value)
+                    updateUI(it.value)
                 }
                 is Resource.Failure -> {
-
                 }
             }
         })
 
-        var movieId : String = arguments?.get("movieID") as String
-        if(viewModel.moviesDetailsResponse.value == null){
-            viewModel.fetchMovieDetailsByID("5cb4645b",movieId)
+        val movieId: String = arguments?.get(Constants.BUNDLE_KEY_MOVIE_ID) as String
+        if (viewModel.moviesDetailsResponse.value == null) {
+            viewModel.fetchMovieDetailsByID(Constants.API_KEY, movieId)
         }
     }
 
@@ -51,8 +52,8 @@ class MovieDetailedInfoFragment : BaseFragment<MoviesViewModel,FragmentMovieDeta
 
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
                 val bitmapDrawable =
-                    BitmapDrawable(getResources(), bitmap?.let { ImageUtils.blur(it, context) })
-                binding.parentContatiner.setBackgroundDrawable(bitmapDrawable)
+                    BitmapDrawable(resources, bitmap?.let { ImageUtils.blur(it, context) })
+                binding.parentContainer.background = bitmapDrawable
             }
 
             override fun onBitmapFailed(errorDrawable: Drawable?) {
@@ -69,10 +70,12 @@ class MovieDetailedInfoFragment : BaseFragment<MoviesViewModel,FragmentMovieDeta
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentMovieDetailedInfoBinding = FragmentMovieDetailedInfoBinding.inflate(inflater,container,false)
+    ): FragmentMovieDetailedInfoBinding =
+        FragmentMovieDetailedInfoBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository(): MovieRepository = MovieRepository(
-    remoteDataSource.buildApi(OMDBApi::class.java))
+        remoteDataSource.buildApi(OMDBApi::class.java)
+    )
 
 
 }

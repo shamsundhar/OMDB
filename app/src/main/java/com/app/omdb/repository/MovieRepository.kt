@@ -2,7 +2,7 @@ package com.app.omdb.repository
 
 import com.app.omdb.network.OMDBApi
 
-class MovieRepository(private val api : OMDBApi) : BaseRepository(){
+class MovieRepository(private val api: OMDBApi) : BaseRepository() {
 
     suspend fun fetchMoviesList(
         apiKey: String,

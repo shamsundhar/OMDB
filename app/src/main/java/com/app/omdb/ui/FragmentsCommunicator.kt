@@ -1,5 +1,5 @@
 package com.app.omdb.ui
 
 interface FragmentsCommunicator {
-    fun onRecyclerViewClicked(movieID : String)
+    fun onRecyclerViewClicked(movieID: String)
 }

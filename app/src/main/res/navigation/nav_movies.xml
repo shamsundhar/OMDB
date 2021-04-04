@@ -20,7 +20,7 @@
         android:id="@+id/movieDetailedInfoFragment"
         android:name="com.app.omdb.ui.MovieDetailedInfoFragment"
         android:label="MovieDetailedInfoFragment"
-        tools:layout="@layout/fragment_movie_detailed_info"/>
+        tools:layout="@layout/fragment_movie_detailed_info" />
 
 
 </navigation>

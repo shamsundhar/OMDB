@@ -1,4 +1,4 @@
-package com.app.excelli.utils;
+package com.app.utils
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,15 +6,16 @@ import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
+import kotlin.math.roundToInt
 
 object ImageUtils {
 
-    private val BITMAP_SCALE = 0.4f
-    private val BLUR_RADIUS = 7.5f
+    private const val BITMAP_SCALE = 0.4f
+    private const val BLUR_RADIUS = 7.5f
 
     fun blur(image: Bitmap, mContext: Context?): Bitmap? {
-        val width = Math.round(image.width * BITMAP_SCALE).toInt()
-        val height = Math.round(image.height * BITMAP_SCALE).toInt()
+        val width = (image.width * BITMAP_SCALE).roundToInt()
+        val height = (image.height * BITMAP_SCALE).roundToInt()
         val inputBitmap = Bitmap.createScaledBitmap(image, width, height, false)
         val outputBitmap = Bitmap.createBitmap(inputBitmap)
         val rs = RenderScript.create(mContext)
