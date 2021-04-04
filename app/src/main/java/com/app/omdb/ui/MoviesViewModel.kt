@@ -18,7 +18,6 @@ class MoviesViewModel(
         MutableLiveData()
     val moviesListResponse: LiveData<Resource<MoviesListResponse>> get() = _moviesListResponse
 
-
     private val _moviesDetailsResponse: MutableLiveData<Resource<MovieDetailsResponse>> =
         MutableLiveData()
     val moviesDetailsResponse: LiveData<Resource<MovieDetailsResponse>> get() = _moviesDetailsResponse
@@ -27,7 +26,6 @@ class MoviesViewModel(
         apiKey: String,
         movieName: String
     ) = viewModelScope.launch {
-        println("viewModelScope")
         _moviesListResponse.value = repository.fetchMoviesList(apiKey, movieName)
     }
 
@@ -36,7 +34,6 @@ class MoviesViewModel(
         apiKey: String,
         movieID: String
     ) = viewModelScope.launch {
-        println("viewModelScope")
         _moviesDetailsResponse.value = repository.fetchMovieDetailsByID(apiKey, movieID)
     }
 

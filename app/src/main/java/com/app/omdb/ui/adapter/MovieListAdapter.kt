@@ -34,7 +34,7 @@ class MovieListAdapter(
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
         val currentItem = moviesList[position]
         holder.binding.mvTitle.text = currentItem.Title
-        holder.binding.mvDesc.text = currentItem.Type
+        holder.binding.mvDesc.text = currentItem.Year
         Picasso.with(context).load(currentItem.Poster).into(holder.binding.imageView)
         holder.binding.movieItemParent.setOnClickListener {
             fragmentsCommunicator.onRecyclerViewClicked(currentItem.imdbID)
@@ -42,15 +42,14 @@ class MovieListAdapter(
     }
 
 
-    fun setNewData(topic: ArrayList<Search>?) {
-        if (topic != null) {
-            moviesList = topic
+    fun setNewData(list: ArrayList<Search>?) {
+        if (list != null) {
+            moviesList = list
             notifyDataSetChanged()
         }
     }
 
     override fun getItemCount(): Int {
-        println("getItemCount : " + moviesList.size)
         return moviesList.size
     }
 

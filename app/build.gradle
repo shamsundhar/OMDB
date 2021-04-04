@@ -78,14 +78,9 @@ dependencies {
     //New Material Design
     implementation 'com.google.android.material:material:1.4.0-alpha02'
 
-    //Kodein Dependency Injection
-//    implementation "org.kodein.di:kodein-di-generic-jvm:$kodeinDIVersion"
-//    implementation "org.kodein.di:kodein-di-framework-android-x:$kodeinDIVersion"
-
     //Android Navigation Architecture
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-
 
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
 

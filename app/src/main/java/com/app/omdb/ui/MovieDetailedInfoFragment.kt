@@ -1,13 +1,13 @@
 package com.app.omdb.ui
 
 
+import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import com.app.omdb.databinding.FragmentMovieDetailedInfoBinding
 import com.app.omdb.network.OMDBApi
 import com.app.omdb.network.Resource
@@ -16,27 +16,42 @@ import com.app.omdb.responses.MovieDetailsResponse
 import com.app.omdb.ui.base.BaseFragment
 import com.app.omdb.ui.common.Constants
 import com.app.utils.ImageUtils
+import com.app.utils.ProgressDialog
 import com.squareup.picasso.Picasso
 
 class MovieDetailedInfoFragment :
     BaseFragment<MoviesViewModel, FragmentMovieDetailedInfoBinding, MovieRepository>() {
 
+    private lateinit var dialog: Dialog
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.moviesDetailsResponse.observe(viewLifecycleOwner, Observer {
+        dialog = ProgressDialog.progressDialog(context)
+        viewModel.moviesDetailsResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Success -> {
+                    hideLoading()
                     updateUI(it.value)
                 }
                 is Resource.Failure -> {
+                    hideLoading()
                 }
             }
         })
 
         val movieId: String = arguments?.get(Constants.BUNDLE_KEY_MOVIE_ID) as String
         if (viewModel.moviesDetailsResponse.value == null) {
+            displayLoading()
             viewModel.fetchMovieDetailsByID(Constants.API_KEY, movieId)
         }
+    }
+
+    fun displayLoading() {
+        dialog.show()
+    }
+
+    fun hideLoading() {
+        dialog.hide()
     }
 
     private fun updateUI(movieDetailsResponse: MovieDetailsResponse) {

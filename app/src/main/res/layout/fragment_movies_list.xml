@@ -12,12 +12,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Top Rated"
+        android:text="@string/text_movies_list"
         android:textColor="@color/black"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/searchIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_tv"
+        app:layout_constraintBottom_toBottomOf="@id/title_tv"
+        android:src="@android:drawable/ic_search_category_default" />
 
 
     <androidx.recyclerview.widget.RecyclerView
