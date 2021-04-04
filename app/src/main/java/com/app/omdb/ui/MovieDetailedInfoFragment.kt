@@ -46,11 +46,11 @@ class MovieDetailedInfoFragment :
         }
     }
 
-    fun displayLoading() {
+    private fun displayLoading() {
         dialog.show()
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         dialog.hide()
     }
 

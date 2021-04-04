@@ -56,7 +56,7 @@ class MoviesListFragment :
             .navigate(R.id.action_moviesListFragment_to_movieDetailedInfoFragment, bundle)
     }
 
-    private fun initializeObserver(){
+    private fun initializeObserver() {
         viewModel.moviesListResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Success -> {
@@ -71,16 +71,16 @@ class MoviesListFragment :
         })
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
         moviesListAdapter = MovieListAdapter(moviesList, context, this)
 
         binding.moviesListRc.layoutManager = LinearLayoutManager(context)
         binding.moviesListRc.adapter = moviesListAdapter
         binding.moviesListRc.addItemDecoration(
-                DividerItemDecoration(
-                        context,
-                        DividerItemDecoration.VERTICAL
-                )
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
         )
         if (viewModel.moviesListResponse.value == null) {
             displayLoading()
@@ -91,11 +91,11 @@ class MoviesListFragment :
         }
     }
 
-    fun displayLoading() {
+    private fun displayLoading() {
         dialog.show()
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         dialog.hide()
     }
 
@@ -109,7 +109,11 @@ class MoviesListFragment :
             dialog.setContentView(searchBinding.root)
             searchBinding.searchBtn.setOnClickListener {
                 if (TextUtils.isEmpty(searchBinding.searchTv.text)) {
-                    Toast.makeText(context, getString(R.string.text_search_empty), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.text_search_empty),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     dialog.dismiss()
                     displayLoading()

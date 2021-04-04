@@ -38,10 +38,10 @@
         android:layout_toEndOf="@+id/movie_poster_card"
         android:orientation="vertical"
         app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/movie_poster_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/movie_poster_card"
-        app:layout_constraintTop_toTopOf="@id/movie_poster_card"
-        app:layout_constraintBottom_toBottomOf="@id/movie_poster_card">
+        app:layout_constraintTop_toTopOf="@id/movie_poster_card">
 
         <TextView
             android:id="@+id/mv_title"

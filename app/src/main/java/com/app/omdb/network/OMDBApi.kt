@@ -5,7 +5,8 @@ import com.app.omdb.responses.MoviesListResponse
 import com.app.omdb.ui.common.Constants.Companion.QUERY_KEY_PARAM_API_KEY
 import com.app.omdb.ui.common.Constants.Companion.QUERY_KEY_PARAM_I
 import com.app.omdb.ui.common.Constants.Companion.QUERY_KEY_PARAM_S
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface OMDBApi {
 
